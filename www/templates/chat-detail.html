@@ -1,0 +1,97 @@
+<!--
+  This template loads for the 'chat-detail' state (app.js)
+  'chat' is a $scope variable created in the ChatDetailCtrl controller (controllers.js)
+  The ChatDetailCtrl pulls data from the Chats service (service.js)
+  The Chats service returns an array of chat messages data
+-->
+<ion-view view-title="Messages" class="chat-detail" cache-view="false">
+  <ion-content class="padding" delegate-handle="mainScroll" style="overflow:auto; height:70vh;" id='laster'>
+  <h2>{{names['0'].subject}} by {{names['0'].influencerName}}</h2>
+    <div ng-repeat="message in names['0'].messages" class="message-wrapper rlt"
+         on-hold="onMessageHold($event, $index, message)">
+
+      <div ng-if="message.sentBy === 'celebrity'">
+
+        <img class="profile-picture left" src="{{names['0'].influencerPic}}" />
+
+        <div class="chat-bubble left">
+
+          <div class="message">
+            <span ng-if="message.text">{{ message.text | nl2br }}</span>
+           <span ng-if="message.image"> <img src="{{ message.image }}" class="block" ng-if="message.image" alt=""/></span>
+           <span ng-if="message.video"> <video controls preload="metadata" autoplay webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="{{message.video}}" type="video/mp4"/></video>
+        </span>
+          </div>
+
+          <div class="message-detail"  ng-if="message.text">
+            <span class="message-time">{{message.timestamp}}</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div ng-if="message.sentBy === 'user' && $index>0" >
+
+        <img class="profile-picture right" src="{{me['0'].userPic}}"  />
+
+        <div class="chat-bubble right">
+
+          <div class="message" ng-if="message.text" ng-bind-html="message.text | nl2br">
+          {{message.text | nl2br}}
+          </div>
+
+          <div class="message-detail">
+            <span class="message-time">{{ message.timestamp }}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="cf"></div>
+
+    </div>
+  </ion-content>
+
+  <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
+ 
+ 
+ <div class="bar bar-subfooter bar-balanced" style="margin-top:-20px">
+    <div class="row">
+       
+                 <ion-radio ng-model="choice" ng-value="'video'"><i class="ion-ios-videocam"></i></ion-radio>
+<ion-radio ng-model="choice" ng-value="'image'"><i class="ion-image"></i></ion-radio>
+<ion-radio ng-model="choice" ng-value="'text'"><i class="ion-chatbubble"></i></ion-radio>
+        
+    </div>
+    </div>
+   <div class="bar bar-footer row">
+     <div class="row">
+        
+              <label class="item-input-wrapper">
+        <textarea ng-model="input.message" value="" placeholder="Send {{names['0'].influencerName}} a message..." required minlength="1" maxlength="1500" msd-elastic on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()"></textarea>
+      </label>
+      <div class="footer-btn-wrap">
+        <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                ng-disabled="!input.message || input.message === ''">
+        </button>
+      </div>
+        </div>
+    </div>
+      
+        
+  </form>
+</ion-view>
+<style>
+.row{
+	margin-top:-24px;
+}
+ .bar.bar-balanced {
+	 border:none;
+	 background-color:#FFF;
+ }
+ .scroll
+ {
+	 transform: translate3d(0px,80vh, 0px) scale(1); !important;
+ }
+ </style>

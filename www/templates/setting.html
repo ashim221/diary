@@ -1,0 +1,54 @@
+
+<!--
+  This template loads for the 'setting' state (app.js)
+-->
+<ion-view view-title="Setting">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-right">
+        <p>Find Facebook Friends</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-icon-right">
+        <p>Find contacts</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-icon-right">
+        <p>Edit profile</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-icon-right">
+        <p>Change password</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-toggle">
+        <p>Private account</p>
+        <label class="toggle toggle-assertive">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </ion-item>
+		<div ng-click="twitterAdd()" ng-if="me['0'].userType === 'celebrity'">
+      <ion-item class="item-icon-right">
+        <p>Add your Twitter</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      </div>
+      <div ng-click="instagramAdd()" ng-if="me['0'].userType === 'celebrity'">
+      <ion-item class="item-icon-right">
+        <p>Add your Instagram</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      </div>
+		<div>
+        {{data2}}
+        </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

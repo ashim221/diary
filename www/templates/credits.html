@@ -1,0 +1,23 @@
+<ion-view view-title="Credits">
+  <ion-pane>
+      <ion-header-bar class="bar-stable">
+        
+      </ion-header-bar>
+      <ion-content class="padding">
+        <h3>Products</h3>
+        <button ng-show="!products" ng-click="loadProducts()" class="button button-block button-balanced">
+          <i class="ion-arrow-down-c"></i> Buy More Credits
+        </button>
+        <button ng-repeat="product in products" ng-click="buy(product.productId)" class="button button-block button-positive">
+          {{product.title}} - {{product.price}}
+        </button>
+        
+  
+        <!--<h3>Restore Purchases</h3>
+        <button ng-click="restore()" class="button button-block button-balanced">
+          <i class="ion-refresh"></i> Restore
+        </button>-->
+      </ion-content>
+    </ion-pane>
+
+</ion-view>
